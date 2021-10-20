@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Str;
+use App\Models\Post;
 use Illuminate\Database\Seeder;
 
 class PostsTableSeeder extends Seeder
@@ -11,6 +13,5 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
     }
 }
