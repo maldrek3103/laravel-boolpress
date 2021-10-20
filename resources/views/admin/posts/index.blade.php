@@ -3,8 +3,11 @@
 @section('content')
 
 <div class="container">
-    <table class="table table-dark">
-        <h2>My posts</h2>
+    <table class="table table-light">
+      <header class="d-flex justify-content-between align-items-center">
+          <h2>My posts</h2>
+          <a href="{{route('admin.posts.create')}}" class="btn btn-success">New post</a>
+        </header>
         <thead>
           <tr>
             <th scope="col">Title</th>
@@ -19,7 +22,15 @@
             <td>{{ $post->title }}</td>
             <td>{{ $post->content }}</td>
             <td>{{ $post->getFormattedDate('cerated_at') }}</td>
-            <td><a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary">Vai</a></td>
+            <td class="d-flex">
+              <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary">Show</a>
+              <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-warning ml-2">Edit</a>
+              <form action="{{route('admin.posts.destroy', $post->id)}}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger ml-2">Delete</button>
+              </form>
+            </td>
           </tr>
          
             @empty
