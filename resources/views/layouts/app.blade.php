@@ -64,8 +64,16 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+                                    
+                                    <a class="dropdown-item" href="{{ route('admin.posts.index') }}">My posts</a>
                                 </div>
+                                
+                            
+                         
+                                
                             </li>
+                            
+                            
                         @endguest
                     </ul>
                 </div>
