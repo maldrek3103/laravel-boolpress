@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Auth::routes(['register' => false]);
+Auth::routes(['register' => true]);
 
 // Rotte per auth
 Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->group(function () {

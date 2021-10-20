@@ -31,6 +31,10 @@
 
         </tbody>
       </table>
+
+      <footer class="d-flex justify-content-end">
+        {{$posts->links()}}
+      </footer>
 </div>
 
 @endsection
