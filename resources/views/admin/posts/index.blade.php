@@ -3,11 +3,12 @@
 @section('content')
 
 <div class="container">
+  <header class="d-flex justify-content-between align-items-center my-5">
+      <h1>My posts</h1>
+      <a href="{{route('admin.posts.create')}}" class="btn btn-success">New post</a>
+    </header>
+    <main class="border rounded">
     <table class="table table-light">
-      <header class="d-flex justify-content-between align-items-center">
-          <h2>My posts</h2>
-          <a href="{{route('admin.posts.create')}}" class="btn btn-success">New post</a>
-        </header>
         <thead>
           <tr>
             <th scope="col">Title</th>
@@ -42,7 +43,7 @@
 
         </tbody>
       </table>
-
+    </main>
       <footer class="d-flex justify-content-end">
         {{$posts->links()}}
       </footer>
