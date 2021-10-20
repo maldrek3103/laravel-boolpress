@@ -3,11 +3,9 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Welcome to my site</div>
+                    <Header/>
 
-                    <div class="card-body">
-                        Work in progress site
-                    </div>
+                    <Body />
                 </div>
             </div>
         </div>
@@ -15,8 +13,13 @@
 </template>
 
 <script>
+import Header from './Header.vue';
+import Body from './Body.vue';
     export default {
         name: "App",
-      
-    }
+        components: {
+            Header,
+            Body,
+        },
+    };
 </script>
