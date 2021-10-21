@@ -1,25 +1,25 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <Header/>
-
-                    <Body />
-                </div>
-            </div>
-        </div>
+    <div class="container my-5">
+        <Header :title="title"/>
+        <main>
+            <PostList />
+        </main>        
     </div>
 </template>
 
 <script>
-import Header from './Header.vue';
-import Body from './Body.vue';
-    export default {
-        name: "App",
-        components: {
-            Header,
-            Body,
-        },
-    };
+import Header from "./Header.vue";
+import PostList from "./Posts/PostList.vue";
+export default {
+    name: "App",
+    data(){
+        return { 
+            title: "Boolpress",
+        };
+    },
+    components: {
+        Header,
+        PostList,
+    },
+};
 </script>
