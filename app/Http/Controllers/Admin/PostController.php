@@ -17,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(10);
+        $posts = Post::orderBy('id', 'desc')->paginate(10);
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -79,11 +79,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        $post = Post::findOrFail($id);
-        $post->update($request->all());
-        return redirect()->route('admin.posts.index');
+        $data = $request->all();
+
+        $post->fill($data);
+        $post->slug = Str::slug($post->title, '-');
+        $post->save();
+        return redirect()->route('admin.posts.show', $post->id);
     }
 
     /**
