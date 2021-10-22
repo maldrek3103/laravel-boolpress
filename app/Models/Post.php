@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
 
-    protected $fillable = ['title', 'content', 'slug', 'image'];
+    protected $fillable = ['title', 'content', 'slug', 'image', 'category_id'];
 
-    public function getFormattedDate($column)
-    {
-        return Carbon::createFromFormat('d-m-Y H:i:s', $column);
-    }
+    // public function getFormattedDate($column)
+    // {
+    //     return Carbon::createFromFormat('d-m-Y H:i:s', $column);
+    // }
 
     public function category()
     {

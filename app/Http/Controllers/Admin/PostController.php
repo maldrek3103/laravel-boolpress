@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Post;
+use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use illuminate\Support\Str;
@@ -29,7 +30,8 @@ class PostController extends Controller
     public function create()
     {
         $post = new Post();
-        return view('admin.posts.create', compact('post'));
+        $categories = Category::all();
+        return view('admin.posts.create', compact('post', 'categories'));
     }
 
     /**
@@ -40,6 +42,21 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate(
+            [
+                'title' => 'required|string|unique:posts|min:3',
+                'content' => 'required|string',
+                'image' => 'string',
+                'category_id' => 'nullable|exists:categories,id'
+            ],
+            [
+                'required' => 'Field :attribute is required',
+                'min' => 'Min :min characters in :attribute field',
+                'title.unique' => 'Title already exists'
+            ]
+        );
+
         $data = $request->all();
         $post = new Post();
         $post->fill($data);

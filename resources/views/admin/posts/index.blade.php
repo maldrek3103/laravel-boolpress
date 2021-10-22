@@ -17,6 +17,7 @@
         <thead>
           <tr>
             <th scope="col" class="border-right border-bottom">ID</th>
+            <th scope="col" class="border-right border-bottom">Category</th>
             <th scope="col" class="border-right border-bottom">Title</th>
             <th scope="col" class="border-right border-bottom">Content</th>
             <th scope="col" class="border-bottom border-right">Written on</th>
@@ -28,9 +29,10 @@
             @forelse ($posts as $post)
           <tr>
             <th class="border-right border-bottom">{{ $post->id }}</th>
+            <td class="border-bottom border-bottom">@if($post->category){{ $post->category->name }} @else No category @endif</td>
             <td class="border-bottom">{{ $post->title }}</td>
             <td class="border-bottom">{{ $post->content }}</td>
-            <td class="border-bottom">{{ $post->getFormattedDate('cerated_at') }}</td>
+            <td class="border-bottom">{{--{{ $post->getFormattedDate('created_at') }}--}} {{$post->created_at }}</td>
             <td class="d-flex">
               <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary">Show</a>
               <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-warning ml-2">Edit</a>

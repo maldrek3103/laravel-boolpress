@@ -3,9 +3,30 @@
 @section('content')
 
 <div class="container">
-    <h1>{{ $post->title }}</h1>
-    <p>{{$post->content}}</p>
-    <address>{{$post->created_at}}</address>
+    <div class="card">
+    <div class="card-header">
+        <h1 class="card-title">{{ $post->title }}</h1>
+    </div>
+    <div class="card-body">
+        <h4>Category: {{$post->category->name}}</h4>
+      <p class="card-text">{{$post->content}}</p>
+      <div class=" d-flex justify-content-between">
+          <address>{{$post->created_at}}</address>
+          <div id="actions" class="d-flex">
+          <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-warning ml-2">Edit</a>
+          <form action="{{route('admin.posts.destroy', $post->id)}}" method="post" class="delete-button">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger ml-2">Delete</button>
+          </form>
+        </div>
+        </div>
+    </div>
+  </div>
 </div>
+
+
+
+
 
 @endsection
