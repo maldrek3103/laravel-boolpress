@@ -14,4 +14,9 @@ class Post extends Model
     {
         return Carbon::createFromFormat('d-m-Y H:i:s', $column);
     }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category');
+    }
 }
