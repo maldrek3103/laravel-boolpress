@@ -1983,10 +1983,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostCard",
-  props: ["post"]
+  props: ["post"],
+  methods: {
+    formatDate: function formatDate(date) {
+      var postDate = new Date(date);
+      var day = postDate.getDate();
+      var month = postDate.getMonth() + 1;
+      var year = postDate.getFullYear();
+      var hours = postDate.getHours();
+      var minutes = postDate.getMinutes();
+      return "".concat(day, "/").concat(month, "/").concat(year, " - ").concat(hours, ":").concat(minutes);
+    }
+  }
 });
 
 /***/ }),
@@ -37757,23 +37767,17 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card my-5" }, [
     _c("div", { staticClass: "card-header" }, [
-      _vm._v("\n            " + _vm._s(_vm.post.title) + "\n        ")
+      _c("h5", [_c("strong", [_vm._v(_vm._s(_vm.post.title))])])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
-      _c("p", { staticClass: "card-text" }, [_vm._v(_vm._s(_vm.post.content))]),
-      _vm._v(" "),
-      _c(
-        "footer",
-        { staticClass: "text-secondary d-flex justify-content-between" },
-        [
-          _c("time", [_vm._v(" " + _vm._s(_vm.post.created_at))]),
-          _vm._v(" "),
-          _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
-            _vm._v("Read")
-          ])
-        ]
-      )
+      _c("p", { staticClass: "card-text" }, [_vm._v(_vm._s(_vm.post.content))])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-footer text-secondary d-flex" }, [
+      _c("time", [
+        _vm._v("Published on: " + _vm._s(_vm.formatDate(_vm.post.created_at)))
+      ])
     ])
   ])
 }
