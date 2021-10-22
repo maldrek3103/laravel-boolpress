@@ -53,7 +53,7 @@ class PostController extends Controller
             [
                 'required' => 'Field :attribute is required',
                 'min' => 'Min :min characters in :attribute field',
-                'title.unique' => 'Title already exists'
+                'title.unique' => 'Title already exist'
             ]
         );
 
