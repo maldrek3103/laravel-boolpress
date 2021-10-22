@@ -16,23 +16,23 @@
     <table class="table table-light">
         <thead>
           <tr>
-            <th scope="col" class="border-right border-bottom">ID</th>
-            <th scope="col" class="border-right border-bottom">Category</th>
-            <th scope="col" class="border-right border-bottom">Title</th>
-            <th scope="col" class="border-right border-bottom">Content</th>
-            <th scope="col" class="border-bottom border-right">Written on</th>
-            <th scope="col" class="border-bottom">Actions</th>
+            <th scope="col" class="border-right">ID</th>
+            <th scope="col" class="border-right">Category</th>
+            <th scope="col" class="border-right">Title</th>
+            <th scope="col" class="border-right">Content</th>
+            <th scope="col" class="border-right">Written on</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
 
             @forelse ($posts as $post)
           <tr>
-            <th class="border-right border-bottom">{{ $post->id }}</th>
-            <td class="border-bottom border-bottom">@if($post->category){{ $post->category->name }} @else No category @endif</td>
-            <td class="border-bottom">{{ $post->title }}</td>
-            <td class="border-bottom">{{ $post->content }}</td>
-            <td class="border-bottom">{{--{{ $post->getFormattedDate('created_at') }}--}} {{$post->created_at }}</td>
+            <th class="border-right">{{ $post->id }}</th>
+            <td class="badge badge-info mx-3">@if($post->category){{ $post->category->name }} @else No category @endif</td>
+            <td>{{ $post->title }}</td>
+            <td>{{ $post->content }}</td>
+            <td>{{--{{ $post->getFormattedDate('created_at') }}--}} {{$post->created_at }}</td>
             <td class="d-flex">
               <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary">Show</a>
               <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-warning ml-2">Edit</a>
