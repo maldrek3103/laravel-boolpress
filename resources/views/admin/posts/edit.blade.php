@@ -23,7 +23,7 @@
               <input type="text" class="form-control" id="image" aria-describedby="image" placeholder="Enter an URL" name="image" value="{{ ($post->image) }}">
               <label for="image">Insert your image</label>
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
               <label for="category_id">Select category</label>
               <select class="custom-select" id="category_id" name="category_id">
                 <option selected>No category</option>
@@ -31,7 +31,7 @@
                   <option @if(old('category_id') == $category->id) selected @endif value="{{$category->id}}">{{$category->name}}</option>
                  @endforeach
               </select>
-            </div>
+            </div> --}}
             <button type="submit" class="btn btn-success">Edit</button>
           </form>
     </section>

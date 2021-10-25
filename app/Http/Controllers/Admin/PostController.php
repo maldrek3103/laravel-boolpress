@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Post;
-use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use illuminate\Support\Str;
+use App\Models\Category;
+use App\Models\Post;
 
 
 class PostController extends Controller

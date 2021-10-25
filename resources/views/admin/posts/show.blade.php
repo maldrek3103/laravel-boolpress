@@ -9,7 +9,7 @@
         <h1 class="card-title">{{ $post->title }}</h1>
     </div>
     <div class="card-body">
-        <h4>Category: {{$category->name}}</h4>
+        {{-- <h4>Category: {{$post->category->name}}</h4> --}}
       <p class="card-text">{{$post->content}}</p>
       <div class=" d-flex justify-content-between">
           <address>{{$post->created_at}}</address>
