@@ -17,7 +17,8 @@
         <thead>
           <tr>
             <th scope="col" class="border-right">ID</th>
-            <th scope="col" class="border-right">Category</th>
+            <th scope="col" class="border-right">Tags</th>
+            {{-- <th scope="col" class="border-right">Category</th> --}}
             <th scope="col" class="border-right">Title</th>
             <th scope="col" class="border-right">Content</th>
             <th scope="col" class="border-right">Written on</th>
@@ -29,7 +30,16 @@
             @forelse ($posts as $post)
           <tr>
             <th class="border-right">{{ $post->id }}</th>
-            <td class="badge badge-info mx-3">@if($post->category){{ $post->category->name }} @else No category @endif</td>
+            <td>
+              @forelse ($post->tags as $tag)
+               <span class="badge badge-pill" style="backgroud-color: {{$tag->color}}">{{ $tag->name }}</span>
+
+              @empty
+              No tags
+
+              @endforelse
+            </td>
+            {{-- <td class="badge badge-info mx-3">@if($post->category){{ $post->category->name }} @else No category @endif</td> --}}
             <td>{{ $post->title }}</td>
             <td>{{ $post->content }}</td>
             <td>{{--{{ $post->getFormattedDate('created_at') }}--}} {{$post->created_at }}</td>

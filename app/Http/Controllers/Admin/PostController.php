@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Post;
+use App\Models\Tag;
+use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use illuminate\Support\Str;
-use App\Models\Category;
-use App\Models\Post;
 
 
 class PostController extends Controller
@@ -29,9 +30,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        $post = new Post();
+        $posts = new Post();
         $categories = Category::all();
-        return view('admin.posts.create', compact('post', 'categories'));
+        $tags = Tag::all();
+        return view('admin.posts.create', compact('tags', 'categories', 'posts'));
     }
 
     /**
@@ -48,7 +50,8 @@ class PostController extends Controller
                 'title' => 'required|string|unique:posts|min:3',
                 'content' => 'required|string',
                 'image' => 'string',
-                'category_id' => 'nullable|exists:categories,id'
+                'category_id' => 'nullable|exists:categories,id',
+                'tags' => 'nullable|exists:tags,id',
             ],
             [
                 'required' => 'Field :attribute is required',
@@ -62,6 +65,8 @@ class PostController extends Controller
         $post->fill($data);
         $post->slug = Str::slug($post->title, '-');
         $post->save();
+
+        if (array_key_exists('tags', $data)) $post->tags()->attach($data['tags']);
 
         return redirect()->route('admin.posts.show', compact('post'));
     }

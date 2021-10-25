@@ -32,6 +32,17 @@
                      @endforeach
                   </select>
                 </div> --}}
+
+                <fieldset class="mb-5">
+                  <h6>Tags</h6>
+                  @foreach ($tags as $tag)
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="tags-{{ $tag->id }}" value="{{ $tag->id }}" name="tags[]" @if(in_array($tag->id, old('tags', []))) checked @endif>
+                    <label class="form-check-label" for="tags-{{ $tag->id }}">{{ $tag->name }}</label>
+                  </div>
+                  @endforeach
+                </fieldset>
+
                 <button type="submit" class="btn btn-success">Submit</button>
               </form>
         </section>
