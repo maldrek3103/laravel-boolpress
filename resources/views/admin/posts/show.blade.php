@@ -9,7 +9,6 @@
         <h1 class="card-title">{{ $post->title }}</h1>
     </div>
     <div class="card-body">
-      {{-- @dd($post->category) --}}
          <span class="badge badge-info">Category: @if($post->category){{ $post->category->name }} @else No category @endif</span>
         <p class="card-text">{{$post->content}}</p>
       <div class=" d-flex justify-content-between">
