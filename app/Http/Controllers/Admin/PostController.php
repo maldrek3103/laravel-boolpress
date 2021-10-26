@@ -8,7 +8,7 @@ use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use illuminate\Support\Str;
-
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -42,12 +42,12 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
 
         $request->validate(
             [
-                'title' => 'required|string|unique:posts|min:3',
+                'title' => ['required', 'string', Rule::unique('posts')->ignore($post->id), 'min:3'],
                 'content' => 'required|string',
                 'image' => 'string',
                 'category_id' => 'nullable|exists:categories,id',
@@ -79,7 +79,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('admin.posts.show', compact('post'));
+        $categories = Category::all();
+        return view('admin.posts.show', compact('post', 'categories'));
     }
 
     /**
